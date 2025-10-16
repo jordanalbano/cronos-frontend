@@ -43,6 +43,12 @@ export const routes: Routes = [
                 data: { roles: [Role.RRHH, Role.SYSTEM_ADMIN] }
             },
             {
+                path: 'monthly-hours-config',
+                loadComponent: () => import('./features/monthly-hours-config/monthly-hours-config.component'),
+                canActivate: [roleGuard],
+                data: { roles: [Role.RRHH, Role.SYSTEM_ADMIN] }
+            },
+            {
                 path: 'design',
                 loadComponent: () => import('./features/design-system/design-system.component')
             },

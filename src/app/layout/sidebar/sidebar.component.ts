@@ -47,6 +47,7 @@ export class SidebarComponent {
     { labelKey: 'NAV_EMPLOYEE_HISTORY', icon: 'history', route: '/employee-history', requiredRoles: [Role.RRHH, Role.SYSTEM_ADMIN] },
     { labelKey: 'NAV_REPORTS', icon: 'bar-chart-3', route: '/reports', requiredRoles: [Role.RRHH, Role.SYSTEM_ADMIN] },
     { labelKey: 'NAV_USERS', icon: 'users', route: '/users', requiredRoles: [Role.SYSTEM_ADMIN] },
+    { labelKey: 'NAV_MONTHLY_HOURS_CONFIG', icon: 'settings', route: '/monthly-hours-config', requiredRoles: [Role.RRHH, Role.SYSTEM_ADMIN] },
   ];
 
   public visibleNavItems = computed(() => 

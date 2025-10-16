@@ -2,6 +2,7 @@ import { Component, OnInit, inject, computed } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ClockingsService } from './clockings.service';
 import { AuthService } from '../../core/auth/auth.service';
+import { MonthlyHoursConfigService } from '../monthly-hours-config/monthly-hours-config.service';
 import { ClockingFormComponent } from './components/clocking-form/clocking-form.component';
 import { ClockingsListComponent } from './components/clockings-list/clockings-list.component';
 import { CardComponent } from '../../shared/components/card/card.component';
@@ -63,6 +64,7 @@ import { KpiCardComponent } from '../../shared/components/kpi-card/kpi-card.comp
 export default class ClockingsContainerComponent implements OnInit {
   public clockingsService = inject(ClockingsService);
   private authService = inject(AuthService);
+  private monthlyHoursConfigService = inject(MonthlyHoursConfigService);
 
   public userRoles = computed(() => this.authService.currentUser()?.roles || []);
   public isFichador = computed(() => this.userRoles().includes(Role.FICHADOR));
@@ -80,12 +82,12 @@ export default class ClockingsContainerComponent implements OnInit {
   });
 
   public extraHours = computed(() => {
-     // Mock logic, max 4h/month
      const totalMs = this.clockingsService.clockings
      .filter(c => c.status === 'completed' && c.endTime)
      .reduce((acc, c) => acc + (new Date(c.endTime!).getTime() - new Date(c.startTime).getTime()), 0);
      const totalHours = totalMs / (1000 * 60 * 60);
-     const exceeded = Math.max(0, totalHours - 160); // Assuming 160h/month
+     const configuredHours = this.monthlyHoursConfigService.config()?.monthlyHours || 160;
+     const exceeded = Math.max(0, totalHours - configuredHours);
      return `${exceeded.toFixed(1)}h`;
   });
 
@@ -95,6 +97,7 @@ export default class ClockingsContainerComponent implements OnInit {
 
   ngOnInit(): void {
     this.clockingsService.loadClockings();
+    this.monthlyHoursConfigService.loadConfig();
   }
 
   onAddClocking(clocking: Partial<Clocking> & { userId?: string }): void {
