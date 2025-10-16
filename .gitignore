@@ -7,3 +7,4 @@ node_modules/
 /.idea/modules.xml
 /package-lock.json
 /.idea/vcs.xml
+.env
