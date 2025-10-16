@@ -1,0 +1,27 @@
+@import './styles/design-tokens.css'; /* 1. Tailwind directives */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+/* 2. Import Design Tokens */
+
+
+/* 4. Global Styles & Overrides */
+body {
+    font-family: var(--font-family), serif;
+  background-color: var(--surface-ground);
+  color: var(--text-color);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* 5. Utility Classes */
+.glass {
+  background: var(--glass-bg);
+  backdrop-filter: blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 1rem;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+}

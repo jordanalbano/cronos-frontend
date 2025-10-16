@@ -1,0 +1,15 @@
+{
+  "APP_TITLE": "Chronos",
+  "APP_SUBTITLE": "Gestión de Ausencias",
+  "LOGIN_SIMULATE": "Simular inicio de sesión como:",
+  "LOGIN_BUTTON": "Ingresar",
+  "LOGIN_DEMO_NOTE": "Modo de demostración. No se requieren credenciales reales.",
+  "NAV_DASHBOARD": "Dashboard",
+  "NAV_MY_CLOCKINGS": "Mis Fichajes",
+  "NAV_EMPLOYEE_HISTORY": "Historial Empleado",
+  "NAV_REPORTS": "Reportes",
+  "NAV_USERS": "Usuarios",
+  "NAV_DESIGN_SYSTEM": "Design System",
+  "DASHBOARD_TITLE": "Dashboard",
+  "DASHBOARD_WELCOME": "Bienvenido, {{name}}. Aquí tienes un resumen de la actividad."
+}

@@ -1,0 +1,15 @@
+{
+  "APP_TITLE": "Chronos",
+  "APP_SUBTITLE": "Absence Management",
+  "LOGIN_SIMULATE": "Simulate login as:",
+  "LOGIN_BUTTON": "Sign In",
+  "LOGIN_DEMO_NOTE": "Demonstration mode. No real credentials required.",
+  "NAV_DASHBOARD": "Dashboard",
+  "NAV_MY_CLOCKINGS": "My Clockings",
+  "NAV_EMPLOYEE_HISTORY": "Employee History",
+  "NAV_REPORTS": "Reports",
+  "NAV_USERS": "Users",
+  "NAV_DESIGN_SYSTEM": "Design System",
+  "DASHBOARD_TITLE": "Dashboard",
+  "DASHBOARD_WELCOME": "Welcome, {{name}}. Here is a summary of the activity."
+}

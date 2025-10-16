@@ -1,0 +1,6 @@
+export enum Role {
+    SYSTEM_ADMIN = 'SYSTEM_ADMIN',
+    CLOCKING_ADMIN = 'CLOCKING_ADMIN',
+    EMPLOYEE = 'EMPLOYEE',
+    RRHH = 'RRHH'
+}
