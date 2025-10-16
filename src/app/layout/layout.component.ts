@@ -12,25 +12,25 @@ import { ToastModule } from 'primeng/toast';
   standalone: true,
   imports: [CommonModule, RouterOutlet, SidebarComponent, HeaderComponent, FooterComponent, ToastModule],
   template: `
-    <div class="flex h-screen bg-surface-ground relative">
-      @if (mobileMenuService.isOpen()) {
-        <div
-          class="fixed inset-0 bg-black/50 z-20 lg:hidden transition-opacity duration-300"
-          (click)="mobileMenuService.close()">
-        </div>
-      }
+      <div class="flex h-screen bg-surface-ground relative">
+          @if (mobileMenuService.isOpen()) {
+              <div
+                      class="fixed inset-0 bg-black/50 z-20 lg:hidden transition-opacity duration-300"
+                      (click)="mobileMenuService.close()">
+              </div>
+          }
 
-      <app-sidebar></app-sidebar>
+          <app-sidebar></app-sidebar>
 
-      <div class="flex-1 flex flex-col overflow-hidden w-full lg:w-auto">
-        <app-header></app-header>
-        <main class="flex-1 overflow-x-hidden overflow-y-auto">
-          <router-outlet></router-outlet>
-        </main>
-        <app-footer></app-footer>
+          <div class="flex-1 flex flex-col overflow-hidden w-full lg:w-auto">
+              <app-header></app-header>
+              <main class="flex-1 overflow-x-hidden overflow-y-auto">
+                  <router-outlet></router-outlet>
+                  <app-footer></app-footer>
+              </main>
+          </div>
+          <p-toast></p-toast>
       </div>
-      <p-toast></p-toast>
-    </div>
   `,
   styles: [`
     :host ::ng-deep body {

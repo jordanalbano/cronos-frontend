@@ -9,11 +9,11 @@ import { LucideAngularModule } from 'lucide-angular';
   standalone: true,
   imports: [CommonModule, LucideAngularModule],
   template: `
-    <header class="bg-surface-card/80 backdrop-blur-sm border-b border-surface-border sticky top-0 z-20">
+    <header class="border-b border-surface-border sticky top-0 z-20">
       <div class="h-16 flex items-center justify-between px-4 sm:px-6 lg:px-8">
         <button
           (click)="toggleMobileMenu()"
-          class="lg:hidden p-2 rounded-lg hover:bg-surface-hover transition-colors"
+          class="lg:hidden p-2 primary-color rounded-lg hover:bg-surface-hover transition-colors"
           aria-label="Toggle menu"
           [attr.aria-expanded]="mobileMenuService.isOpen()">
           @if (mobileMenuService.isOpen()) {

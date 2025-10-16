@@ -16,9 +16,11 @@ import {
     FileText,
     UserPlus,
     ClipboardX,
-    CalendarCheck, Timer, UserX, BarChart
+    CalendarCheck, Timer, UserX, BarChart, Menu, Sparkles, TrendingUp, TrendingDown,
+    PlayCircle, Plus, Info
 } from 'lucide-angular';
 import {MessageService} from 'primeng/api';
+import Aura from '@primeuix/themes/aura';
 
 import {routes} from './app.routes';
 import {authInterceptor} from './core/auth/auth.interceptor';
@@ -30,7 +32,6 @@ const interceptors = [authInterceptor];
 if (environment.mockMode) {
     interceptors.push(mockHttpInterceptor);
 }
-
 
 
 export const appConfig: ApplicationConfig = {
@@ -53,12 +54,22 @@ export const appConfig: ApplicationConfig = {
             AlertTriangle,
             FileDown,
             FileText,
+            Menu,
+            Sparkles,
+            TrendingUp,
+            TrendingDown,
+            PlayCircle,
+            Info,
+            Plus,
             UserPlus,
             ClipboardX
         })),
         MessageService,
         providePrimeNG({
-            theme: {}
+            theme: {
+                preset: Aura
+
+            }
         }),
     ],
 };

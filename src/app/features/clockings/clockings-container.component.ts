@@ -26,7 +26,7 @@ import { KpiCardComponent } from '../../shared/components/kpi-card/kpi-card.comp
     <div class="p-4 sm:p-6 lg:p-8">
       <header class="mb-8">
         <h1 class="text-3xl font-bold text-text-color">Gestión de Fichajes</h1>
-        <p class="text-text-color-secondary mt-1">Registra tus entradas/salidas y consulta tu historial.</p>
+        <p class="text-text-color-secondary mt-1">Registra las entradas/salidas y consulta el historial.</p>
       </header>
 
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
