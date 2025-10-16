@@ -1,2 +1,9 @@
 node_modules/
 .angular
+/.idea/.gitignore
+/.idea/chronos.iml
+/.idea/compiler.xml
+/.idea/material_theme_project_new.xml
+/.idea/modules.xml
+/package-lock.json
+/.idea/vcs.xml

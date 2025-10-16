@@ -10,7 +10,6 @@ import { SpinnerComponent } from '../../shared/components/spinner/spinner.compon
 import { CardComponent } from '../../shared/components/card/card.component';
 import { ChartComponent } from './components/chart/chart.component';
 import { RecentClockingsComponent } from './components/recent-clockings/recent-clockings.component';
-import { TranslatePipe } from '../../core/i18n/translate.pipe';
 
 @Component({
   selector: 'app-dashboard',
@@ -22,13 +21,12 @@ import { TranslatePipe } from '../../core/i18n/translate.pipe';
     SpinnerComponent,
     CardComponent,
     ChartComponent,
-    TranslatePipe
   ],
   template: `
     <div class="p-4 sm:p-6 lg:p-8">
       <header class="mb-8">
-        <h1 class="text-3xl font-bold text-text-color">{{ 'DASHBOARD_TITLE' | translate }}</h1>
-        <p class="text-text-color-secondary mt-1">{{ 'DASHBOARD_WELCOME' | translate:{ name: currentUserName() } }}</p>
+        <h1 class="text-3xl font-bold text-text-color">Titulo</h1>
+        <p class="text-text-color-secondary mt-1">Bienvenido</p>
       </header>
 
       @if(clockingsService.loading && !clockingsService.clockings.length) {
