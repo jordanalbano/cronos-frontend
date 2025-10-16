@@ -1,6 +1,7 @@
-import { Component, computed, inject } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AuthService } from '../../core/auth/auth.service';
+import { MobileMenuService } from '../../core/services/mobile-menu.service';
 import { LucideAngularModule } from 'lucide-angular';
 
 @Component({
@@ -8,10 +9,21 @@ import { LucideAngularModule } from 'lucide-angular';
   standalone: true,
   imports: [CommonModule, LucideAngularModule],
   template: `
-    <header class="bg-surface-card/80 backdrop-blur-sm border-b border-surface-border sticky top-0 z-10">
+    <header class="bg-surface-card/80 backdrop-blur-sm border-b border-surface-border sticky top-0 z-20">
       <div class="h-16 flex items-center justify-between px-4 sm:px-6 lg:px-8">
-        <!-- Placeholder for mobile nav toggle -->
-        <div></div>
+        <button
+          (click)="toggleMobileMenu()"
+          class="lg:hidden p-2 rounded-lg hover:bg-surface-hover transition-colors"
+          aria-label="Toggle menu"
+          [attr.aria-expanded]="mobileMenuService.isOpen()">
+          @if (mobileMenuService.isOpen()) {
+            <lucide-icon name="x" size="24" class="text-text-color"></lucide-icon>
+          } @else {
+            <lucide-icon name="menu" size="24" class="text-text-color"></lucide-icon>
+          }
+        </button>
+
+        <div class="hidden lg:block"></div>
 
         <div class="flex items-center gap-4">
             @if (currentUser(); as user) {
@@ -20,7 +32,7 @@ import { LucideAngularModule } from 'lucide-angular';
                     <p class="text-xs text-text-color-secondary">{{ user.roles.join(', ') }}</p>
                 </div>
             }
-          <button (click)="logout()" class="p-2 rounded-full hover:bg-gray-100" aria-label="Cerrar sesión">
+          <button (click)="logout()" class="p-2 rounded-full hover:bg-surface-hover transition-colors" aria-label="Cerrar sesión">
             <lucide-icon name="log-out" size="20" class="text-text-color-secondary"></lucide-icon>
           </button>
         </div>
@@ -30,7 +42,12 @@ import { LucideAngularModule } from 'lucide-angular';
 })
 export class HeaderComponent {
   private authService = inject(AuthService);
+  public mobileMenuService = inject(MobileMenuService);
   public currentUser = this.authService.currentUser;
+
+  toggleMobileMenu() {
+    this.mobileMenuService.toggle();
+  }
 
   logout() {
     this.authService.logout();
