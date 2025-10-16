@@ -25,8 +25,8 @@ import { RecentClockingsComponent } from './components/recent-clockings/recent-c
   template: `
     <div class="p-4 sm:p-6 lg:p-8">
       <header class="mb-8">
-        <h1 class="text-3xl font-bold text-text-color">Titulo</h1>
-        <p class="text-text-color-secondary mt-1">Bienvenido</p>
+        <h1 class="text-3xl font-bold text-text-color">Dashboard</h1>
+        <p class="text-text-color-secondary mt-1">Bienvenido, {{ currentUserName() }}</p>
       </header>
 
       @if(clockingsService.loading && !clockingsService.clockings.length) {

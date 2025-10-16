@@ -102,9 +102,10 @@ export class ClockingsListComponent {
   constructor(private confirmationService: ConfirmationService) {}
 
   canManage = computed(() =>
-    this.userRoles.includes(Role.SYSTEM_ADMIN) ||
+    (this.userRoles.includes(Role.SYSTEM_ADMIN) ||
     this.userRoles.includes(Role.RRHH) ||
-    this.userRoles.includes(Role.CLOCKING_ADMIN)
+    this.userRoles.includes(Role.CLOCKING_ADMIN)) &&
+    !this.userRoles.includes(Role.FICHADOR)
   );
 
   trackById(index: number, item: Clocking): string {

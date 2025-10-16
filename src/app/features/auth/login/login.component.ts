@@ -24,6 +24,7 @@ import { GlassPanelComponent } from '../../../shared/components/glass-panel/glas
                 <option value="employee">Empleado (Juan)</option>
                 <option value="rrhh">RRHH (Laura)</option>
                 <option value="admin">Admin (Chronos)</option>
+                <option value="fichador">Fichador (Pedro)</option>
               </select>
             </div>
             <button type="submit" [disabled]="loginForm.invalid" class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-primary hover:bg-opacity-90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary disabled:opacity-50">
@@ -44,7 +45,7 @@ export default class LoginComponent {
   private router = inject(Router);
 
   loginForm = this.fb.group({
-    userType: ['employee' as 'admin' | 'rrhh' | 'employee', Validators.required]
+    userType: ['employee' as 'admin' | 'rrhh' | 'employee' | 'fichador', Validators.required]
   });
 
   constructor() {

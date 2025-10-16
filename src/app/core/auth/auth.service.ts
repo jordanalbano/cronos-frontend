@@ -13,6 +13,7 @@ const MOCK_USERS: Record<string, User> = {
   admin: { id: '1', name: 'Admin Chronos', email: 'admin@chronos.dev', roles: [Role.SYSTEM_ADMIN] },
   rrhh: { id: '2', name: 'Laura RRHH', email: 'rrhh@chronos.dev', roles: [Role.RRHH, Role.EMPLOYEE] },
   employee: { id: '3', name: 'Juan Empleado', email: 'juan@chronos.dev', roles: [Role.EMPLOYEE] },
+  fichador: { id: '6', name: 'Pedro Fichador', email: 'fichador@chronos.dev', roles: [Role.FICHADOR] },
 };
 const MOCK_TOKEN = 'MOCK_JWT_TOKEN';
 
@@ -47,7 +48,7 @@ export class AuthService {
    * Simulates a login. In a real app, this would call Keycloak.
    * @param userType The type of mock user to log in as.
    */
-  login(userType: 'admin' | 'rrhh' | 'employee'): void {
+  login(userType: 'admin' | 'rrhh' | 'employee' | 'fichador'): void {
     const user = MOCK_USERS[userType];
     if (user) {
       this.state.set({ user, token: MOCK_TOKEN });

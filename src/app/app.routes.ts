@@ -22,7 +22,7 @@ export const routes: Routes = [
                 path: 'clockings',
                 loadComponent: () => import('./features/clockings/clockings-container.component'),
                 canActivate: [roleGuard],
-                data: { roles: [Role.EMPLOYEE, Role.RRHH, Role.SYSTEM_ADMIN] }
+                data: { roles: [Role.EMPLOYEE, Role.RRHH, Role.SYSTEM_ADMIN, Role.FICHADOR] }
             },
             {
                 path: 'reports',

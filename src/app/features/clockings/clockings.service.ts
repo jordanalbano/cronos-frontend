@@ -49,7 +49,7 @@ export class ClockingsService {
     });
   }
 
-  addClocking(newClockingData: Partial<Clocking>): void {
+  addClocking(newClockingData: Partial<Clocking> & { userId?: string }): void {
     this.apiService.post<Clocking>(this.API_PATH, newClockingData).pipe(
       catchError(err => {
         this.messageService.add({ severity: 'error', summary: 'Error', detail: 'No se pudo crear el fichaje.' });

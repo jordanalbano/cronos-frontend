@@ -42,8 +42,8 @@ export class SidebarComponent {
   private authService = inject(AuthService);
   
   private allNavItems: NavItem[] = [
-    { labelKey: 'NAV_DASHBOARD', icon: 'layout-dashboard', route: '/dashboard', requiredRoles: [Role.EMPLOYEE, Role.RRHH, Role.SYSTEM_ADMIN] },
-    { labelKey: 'NAV_MY_CLOCKINGS', icon: 'clock', route: '/clockings', requiredRoles: [Role.EMPLOYEE] },
+    { labelKey: 'NAV_DASHBOARD', icon: 'layout-dashboard', route: '/dashboard', requiredRoles: [Role.EMPLOYEE, Role.RRHH, Role.SYSTEM_ADMIN, Role.FICHADOR] },
+    { labelKey: 'NAV_MY_CLOCKINGS', icon: 'clock', route: '/clockings', requiredRoles: [Role.EMPLOYEE, Role.FICHADOR] },
     { labelKey: 'NAV_EMPLOYEE_HISTORY', icon: 'history', route: '/employee-history', requiredRoles: [Role.RRHH, Role.SYSTEM_ADMIN] },
     { labelKey: 'NAV_REPORTS', icon: 'bar-chart-3', route: '/reports', requiredRoles: [Role.RRHH, Role.SYSTEM_ADMIN] },
     { labelKey: 'NAV_USERS', icon: 'users', route: '/users', requiredRoles: [Role.SYSTEM_ADMIN] },

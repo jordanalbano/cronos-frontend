@@ -7,23 +7,22 @@ import { User } from '../../shared/models/user.model';
 import { MonthlyReportItem } from '../../shared/models/report.model';
 import { Role } from '../../shared/models/roles.enum';
 
-// --- MOCK DATABASE ---
 let mockUsers: User[] = [
     { id: '1', name: 'Admin Chronos', email: 'admin@chronos.dev', roles: [Role.SYSTEM_ADMIN] },
     { id: '2', name: 'Laura RRHH', email: 'rrhh@chronos.dev', roles: [Role.RRHH, Role.EMPLOYEE] },
     { id: '3', name: 'Juan Empleado', email: 'juan@chronos.dev', roles: [Role.EMPLOYEE] },
     { id: '4', name: 'Maria Desarrolladora', email: 'maria@chronos.dev', roles: [Role.EMPLOYEE] },
     { id: '5', name: 'Carlos Soporte', email: 'carlos@chronos.dev', roles: [Role.EMPLOYEE, Role.CLOCKING_ADMIN] },
+    { id: '6', name: 'Pedro Fichador', email: 'fichador@chronos.dev', roles: [Role.FICHADOR] }
 ];
 
 let mockClockings: Clocking[] = [];
 
-// Generate clockings for all users
 mockUsers.forEach(user => {
     for (let i = 0; i < faker.number.int({ min: 15, max: 40 }); i++) {
         const date = faker.date.recent({ days: 60 });
         const startTime = faker.date.between({ from: new Date(date.getFullYear(), date.getMonth(), 1), to: new Date(date.getFullYear(), date.getMonth() + 1, 0) });
-        const inProgress = i < 2 && user.id === '3'; // Make a few "in-progress" for the default user
+        const inProgress = i < 2 && user.id === '3';
         const endTime = inProgress ? null : faker.date.between({ from: startTime, to: new Date(startTime.getTime() + faker.number.int({min: 1, max: 9}) * 60 * 60 * 1000) });
         mockClockings.push({
             id: faker.string.uuid(),
@@ -36,20 +35,30 @@ mockUsers.forEach(user => {
         });
     }
 });
-// Sort all clockings by date descending
 mockClockings.sort((a, b) => new Date(b.startTime).getTime() - new Date(a.startTime).getTime());
 
 
-// --- API HANDLERS ---
 const handleGetClockings = () => {
     return of(new HttpResponse({ status: 200, body: mockClockings })).pipe(delay(600));
 };
 
 const handleAddClocking = (req: HttpRequest<any>) => {
+    const requestUserId = req.body.userId;
+    const targetUserId = requestUserId || '3';
+    const targetUser = mockUsers.find(u => u.id === targetUserId);
+
+    if (!targetUser) {
+        return of(new HttpResponse({
+            status: 404,
+            statusText: 'User Not Found',
+            body: { error: 'Usuario no encontrado' }
+        })).pipe(delay(600));
+    }
+
     const newClocking: Clocking = {
         id: faker.string.uuid(),
-        userId: '3', // Mock current user ID
-        userName: 'Juan Empleado',
+        userId: targetUser.id,
+        userName: targetUser.name,
         startTime: new Date().toISOString(),
         endTime: null,
         description: req.body.description,
@@ -118,7 +127,7 @@ const handleGetUserHistory = (userId: string) => {
 };
 
 const handleGetReports = (req: HttpRequest<any>) => {
-    const month = Number(req.params.get('month')); // 0-11
+    const month = Number(req.params.get('month'));
     const year = Number(req.params.get('year'));
     const userId = req.params.get('userId');
 
@@ -144,7 +153,7 @@ const handleGetReports = (req: HttpRequest<any>) => {
             date: clocking.startTime,
             totalHours: parseFloat(durationHours.toFixed(2)),
             exceededHours: parseFloat(exceededHours.toFixed(2)),
-            deductibleTime: parseFloat(exceededHours.toFixed(2)), // Assuming same as exceeded for mock
+            deductibleTime: parseFloat(exceededHours.toFixed(2)),
         };
     });
 
@@ -159,7 +168,6 @@ export const mockHttpInterceptor: HttpInterceptorFn = (
   const { url, method } = req;
   const apiPrefix = '/api';
 
-  // Clockings API
   if (url.endsWith(`${apiPrefix}/clockings`) && method === 'GET') return handleGetClockings();
   if (url.endsWith(`${apiPrefix}/clockings`) && method === 'POST') return handleAddClocking(req);
   if (url.match(new RegExp(`${apiPrefix}/clockings/.+$`)) && method === 'PUT') {
@@ -171,7 +179,6 @@ export const mockHttpInterceptor: HttpInterceptorFn = (
     return handleDeleteClocking(id);
   }
 
-  // Users API
   if (url.match(new RegExp(`${apiPrefix}/users/.+/history`)) && method === 'GET') {
     const parts = url.split('/');
     const userId = parts[parts.length - 2];
@@ -188,12 +195,10 @@ export const mockHttpInterceptor: HttpInterceptorFn = (
     return handleDeleteUser(id);
   }
 
-  // Reports API
   if (url.startsWith(`${apiPrefix}/reports`) && method === 'GET') {
     return handleGetReports(req);
   }
 
-  // Default fallback
   console.warn(`[MockHttpInterceptor]: Unhandled request to ${req.url}. Returning 404.`);
   return of(new HttpResponse({ status: 404, statusText: 'Not Found' }));
 };

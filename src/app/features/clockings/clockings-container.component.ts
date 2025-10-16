@@ -35,7 +35,7 @@ import { KpiCardComponent } from '../../shared/components/kpi-card/kpi-card.comp
       </div>
 
       <app-card>
-        <app-clocking-form (addClocking)="onAddClocking($event)"></app-clocking-form>
+        <app-clocking-form [showEmployeeSelector]="isFichador()" (addClocking)="onAddClocking($event)"></app-clocking-form>
       </app-card>
 
       <div class="mt-8">
@@ -65,6 +65,7 @@ export default class ClockingsContainerComponent implements OnInit {
   private authService = inject(AuthService);
 
   public userRoles = computed(() => this.authService.currentUser()?.roles || []);
+  public isFichador = computed(() => this.userRoles().includes(Role.FICHADOR));
 
   public monthlyHours = computed(() => {
     const totalMs = this.clockingsService.clockings
@@ -96,7 +97,7 @@ export default class ClockingsContainerComponent implements OnInit {
     this.clockingsService.loadClockings();
   }
 
-  onAddClocking(clocking: Partial<Clocking>): void {
+  onAddClocking(clocking: Partial<Clocking> & { userId?: string }): void {
     this.clockingsService.addClocking(clocking);
   }
 
