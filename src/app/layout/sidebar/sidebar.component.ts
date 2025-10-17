@@ -33,7 +33,7 @@ interface NavItem {
             (click)="onNavItemClick()"
             class="flex items-center gap-3 px-4 py-2.5 rounded-lg text-sm font-medium text-text-color-secondary hover:bg-surface-hover hover:text-text-color transition-colors">
             <lucide-icon [name]="item.icon" size="20"></lucide-icon>
-            <span>label leas</span>
+            <span>{{item.labelKey}}</span>
           </a>
         }
       </nav>
@@ -44,7 +44,7 @@ interface NavItem {
             (click)="onNavItemClick()"
             class="flex items-center gap-3 px-4 py-2.5 rounded-lg text-sm font-medium text-text-color-secondary hover:bg-surface-hover hover:text-text-color transition-colors">
             <lucide-icon name="palette" size="20"></lucide-icon>
-            <span>navvar</span>
+            <span>diseño</span>
           </a>
       </div>
     </aside>
@@ -56,12 +56,12 @@ export class SidebarComponent {
   private router = inject(Router);
 
   private allNavItems: NavItem[] = [
-    { labelKey: 'NAV_DASHBOARD', icon: 'layout-dashboard', route: '/dashboard', requiredRoles: [Role.EMPLOYEE, Role.RRHH, Role.SYSTEM_ADMIN, Role.FICHADOR] },
-    { labelKey: 'NAV_MY_CLOCKINGS', icon: 'clock', route: '/clockings', requiredRoles: [Role.EMPLOYEE, Role.FICHADOR] },
-    { labelKey: 'NAV_EMPLOYEE_HISTORY', icon: 'history', route: '/employee-history', requiredRoles: [Role.RRHH, Role.SYSTEM_ADMIN] },
-    { labelKey: 'NAV_REPORTS', icon: 'bar-chart-3', route: '/reports', requiredRoles: [Role.RRHH, Role.SYSTEM_ADMIN] },
-    { labelKey: 'NAV_USERS', icon: 'users', route: '/users', requiredRoles: [Role.SYSTEM_ADMIN] },
-    { labelKey: 'NAV_MONTHLY_HOURS_CONFIG', icon: 'settings', route: '/monthly-hours-config', requiredRoles: [Role.RRHH, Role.SYSTEM_ADMIN] },
+    { labelKey: 'Dashboard', icon: 'layout-dashboard', route: '/dashboard', requiredRoles: [Role.EMPLOYEE, Role.RRHH, Role.SYSTEM_ADMIN, Role.FICHADOR] },
+    { labelKey: 'Fichadas', icon: 'clock', route: '/clockings', requiredRoles: [Role.EMPLOYEE, Role.FICHADOR] },
+    { labelKey: 'Historial de empleados', icon: 'history', route: '/employee-history', requiredRoles: [Role.RRHH, Role.SYSTEM_ADMIN] },
+    { labelKey: 'Reportes', icon: 'bar-chart-3', route: '/reports', requiredRoles: [Role.RRHH, Role.SYSTEM_ADMIN] },
+    { labelKey: 'Empleados', icon: 'users', route: '/users', requiredRoles: [Role.SYSTEM_ADMIN] },
+    { labelKey: 'Configuracion de horas', icon: 'settings', route: '/monthly-hours-config', requiredRoles: [Role.RRHH, Role.SYSTEM_ADMIN] },
   ];
 
   public visibleNavItems = computed(() =>
