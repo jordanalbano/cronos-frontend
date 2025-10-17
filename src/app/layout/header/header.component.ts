@@ -14,7 +14,7 @@ import { LucideAngularModule } from 'lucide-angular';
       <div class="h-16 flex items-center justify-between px-4 sm:px-6 lg:px-8">
         <button
           (click)="toggleMobileMenu()"
-          class="lg:hidden p-2 primary-color rounded-lg hover:bg-surface-hover transition-colors"
+          class="p-2 primary-color rounded-lg hover:bg-surface-hover transition-colors"
           aria-label="Toggle menu"
           [attr.aria-expanded]="mobileMenuService.isOpen()">
           @if (mobileMenuService.isOpen()) {
