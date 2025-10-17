@@ -7,6 +7,40 @@
 /* 2. Import Design Tokens */
 
 
+/* 3. Theme Transitions */
+html:not(.theme-transitioning),
+html:not(.theme-transitioning) *,
+html:not(.theme-transitioning) *:before,
+html:not(.theme-transitioning) *:after {
+  transition: background-color var(--transition-smooth),
+              color var(--transition-smooth),
+              border-color var(--transition-smooth),
+              box-shadow var(--transition-smooth) !important;
+}
+
+html.theme-transitioning,
+html.theme-transitioning *,
+html.theme-transitioning *:before,
+html.theme-transitioning *:after {
+  transition: none !important;
+}
+
+@keyframes themeTransition {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.98;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+html.theme-transitioning {
+  animation: themeTransition 300ms ease-in-out;
+}
+
 /* 4. Global Styles & Overrides */
 body {
     font-family: var(--font-family), serif;

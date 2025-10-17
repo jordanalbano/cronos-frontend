@@ -52,3 +52,47 @@
   --surface-ground-fallback: #f9fafb;
   --surface-card-fallback: #ffffff;
 }
+
+[data-theme="dark"] {
+  /* Colors - Keep brand colors consistent */
+  --primary-color: #3b82f6;
+  --primary-light: #60a5fa;
+  --primary-dark: #2563eb;
+  --secondary-color: #10b981;
+  --accent-color: #f59e0b;
+  --danger-color: #ef4444;
+  --success-color: #10b981;
+  --warning-color: #f59e0b;
+  --info-color: #3b82f6;
+
+  /* Text Colors - Inverted hierarchy */
+  --text-color: #f9fafb;
+  --text-color-secondary: #d1d5db;
+  --text-color-muted: #9ca3af;
+
+  /* Surfaces - Dark backgrounds */
+  --surface-ground: #0f172a;
+  --surface-card: #1e293b;
+  --surface-border: #334155;
+  --surface-hover: #334155;
+
+  /* Gradients - Adjusted for dark mode */
+  --gradient-primary: linear-gradient(135deg, #3b82f6 0%, #60a5fa 100%);
+  --gradient-success: linear-gradient(135deg, #10b981 0%, #34d399 100%);
+  --gradient-warning: linear-gradient(135deg, #f59e0b 0%, #fbbf24 100%);
+  --gradient-danger: linear-gradient(135deg, #ef4444 0%, #f87171 100%);
+  --gradient-subtle: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+
+  /* Glassmorphism - Dark glass effect */
+  --glass-bg: rgba(30, 41, 59, 0.7);
+  --glass-bg-strong: rgba(30, 41, 59, 0.85);
+  --glass-blur: 12px;
+  --glass-border: rgba(51, 65, 85, 0.3);
+
+  /* Shadows - Lighter for dark backgrounds */
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.3);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.3), 0 2px 4px -2px rgb(0 0 0 / 0.3);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.4), 0 4px 6px -4px rgb(0 0 0 / 0.4);
+  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.4), 0 8px 10px -6px rgb(0 0 0 / 0.4);
+  --shadow-glow: 0 0 20px rgba(59, 130, 246, 0.3);
+}
