@@ -60,6 +60,7 @@ export class SidebarComponent {
     { labelKey: 'Fichadas', icon: 'clock', route: '/clockings', requiredRoles: [Role.EMPLOYEE, Role.FICHADOR] },
     { labelKey: 'Historial de empleados', icon: 'history', route: '/employee-history', requiredRoles: [Role.RRHH, Role.SYSTEM_ADMIN] },
     { labelKey: 'Reportes', icon: 'bar-chart-3', route: '/reports', requiredRoles: [Role.RRHH, Role.SYSTEM_ADMIN] },
+    { labelKey: 'Cierre de Mes', icon: 'calendar-check', route: '/monthly-closure', requiredRoles: [Role.RRHH, Role.SYSTEM_ADMIN] },
     { labelKey: 'Empleados', icon: 'users', route: '/users', requiredRoles: [Role.SYSTEM_ADMIN] },
     { labelKey: 'Configuracion de horas', icon: 'settings', route: '/monthly-hours-config', requiredRoles: [Role.RRHH, Role.SYSTEM_ADMIN] },
   ];

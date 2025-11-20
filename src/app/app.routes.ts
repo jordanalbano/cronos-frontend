@@ -49,6 +49,18 @@ export const routes: Routes = [
                 data: { roles: [Role.RRHH, Role.SYSTEM_ADMIN] }
             },
             {
+                path: 'monthly-closure',
+                loadComponent: () => import('./features/monthly-closure/monthly-closure.component'),
+                canActivate: [roleGuard],
+                data: { roles: [Role.RRHH, Role.SYSTEM_ADMIN] }
+            },
+            {
+                path: 'monthly-closure/:id',
+                loadComponent: () => import('./features/monthly-closure/monthly-closure-detail.component'),
+                canActivate: [roleGuard],
+                data: { roles: [Role.RRHH, Role.SYSTEM_ADMIN] }
+            },
+            {
                 path: 'design',
                 loadComponent: () => import('./features/design-system/design-system.component')
             },
